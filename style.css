@@ -1,0 +1,112 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(224, 238, 37);
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 5px;
+
+    color: rgb(240, 240, 232);
+
+
+    font-weight: 700;
+    /* background-color: cornflowerblue; */
+
+}
+
+li:nth-child(even) {
+
+    border-bottom: 1px solid greenyellow;
+    border-right: 1px solid greenyellow;
+    border-left: 1px solid greenyellow;
+
+}
+
+li:nth-child(odd) {
+
+    border-bottom: 1px solid rgb(255, 0, 200);
+    border-right: 1px solid rgb(255, 0, 200);
+    border-left: 1px solid rgb(255, 0, 200);
+}
+
+button {
+
+    color: white;
+    background-color: rgba(0, 46, 250, 0.863);
+}
+
+.continer {
+    width: 90%;
+    max-width: 520px;
+    background-color: black;
+    color: white;
+    box-shadow: 10px 10px 10px rgba(55, 56, 56, 0.699);
+    
+}
+
+.UserInput {
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    text-align: center;
+    max-width: 100%;
+
+    background-color: black;
+    padding: 7px;
+
+    
+    margin-bottom: 7px;
+    border-bottom: 2px solid yellow;
+}
+
+.UserInput button {
+
+    margin-right: 5px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+
+    font-size: 15px;
+    font-weight: 800;
+    color: rgb(251, 255, 0);
+    background-color: rgba(72, 214, 224, 0.74);
+
+    border-radius: 7px;
+    box-shadow: 1px 1px 1px rgba(72, 214, 224, 0.699);
+}
+
+.UserInput input {
+
+    width: 40%;
+    min-width: 200px;
+    padding: 4px;
+    border-radius: 7px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+#main {
+    text-align: center;
+
+}
+
+#edit {
+    display: none;
+}
+
+.locastroagevalue {
+    width: 65%;
+    margin-left: 10px;
+    background-color: rgb(57, 59, 59);
+    word-wrap: break-word;
+}
