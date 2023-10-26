@@ -139,13 +139,13 @@ function PrintLocalStroagValue() {
     for (let i = 0; i < localStorageValue.length; i++) {
         li = document.createElement('li');
         li.innerHTML = `
-                         ${[i]}
+                         ${[i + 1]}
                          <div class='locastroagevalue'>
                              ${localStorageValue[i]} 
                          </div>
                          <div>
-                            <button class="${i}" onclick="EditElement(${i})" > ✏️ ${i}  </button>  
-                            <button class="${i}" onclick="DeleteElement(${i})" > ❎ ${i} </button>
+                            <button class="${i}" onclick="EditElement(${i})" > ✏️ </button>  
+                            <button class="${i}" onclick="DeleteElement(${i})" > ❎  </button>
                          </div> `;
         li.id = i;
         main.appendChild(li);
