@@ -3,8 +3,56 @@ body {
     justify-content: center;
     align-items: center;
 
-    background-color: rgb(224, 238, 37);
+    background-color: #00ffd52d;
+    /* background:
+        radial-gradient(khaki 40px,
+            transparent 0,
+            transparent 100%),
+        radial-gradient(skyblue 40px,
+            transparent 0,
+            transparent 100%),
+        radial-gradient(pink 40px,
+            transparent 0,
+            transparent 100%), snow;
+    background-blend-mode: multiply;
+    background-size: 100px 100px;
+    background-position: 0 0, 33px 33px, -33px -33px; */
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #444343;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    width: 5px;
+    background: #7cb7da;
+    border-radius: 10px;
+
+
+    background: linear-gradient(45deg,
+            #ff0000,
+            #ff7300,
+            #fffb00,
+            #48ff00,
+            #00ffd5,
+            #002bff,
+            #7a00ff,
+            #ff00c8,
+            #ff0000);
+
+    animation: glowing-button-85 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+
+
+}
+
 
 li {
     display: flex;
@@ -22,24 +70,37 @@ li {
 
 li:nth-child(even) {
 
-    border-bottom: 1px solid greenyellow;
-    border-right: 1px solid greenyellow;
-    border-left: 1px solid greenyellow;
+    border-bottom: 1px solid rgba(172, 255, 47, 0.596);
+    border-right: 1px solid rgba(172, 255, 47, 0.596);
+    border-left: 1px solid rgba(172, 255, 47, 0.596);
 
 }
+
 
 li:nth-child(odd) {
 
-    border-bottom: 1px solid rgb(255, 0, 200);
-    border-right: 1px solid rgb(255, 0, 200);
-    border-left: 1px solid rgb(255, 0, 200);
+    border-bottom: 1px solid rgba(255, 0, 200, 0.637);
+    border-right: 1px solid rgba(255, 0, 200, 0.637);
+    border-left: 1px solid rgba(255, 0, 200, 0.637);
 }
 
 button {
-
-    color: white;
-    background-color: rgba(0, 46, 250, 0.863);
+    padding: 0.6em 0.7em;
+    /* margin: 7px 5px; */
+    /* border: none; */
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
+
+
 
 .continer {
     width: 90%;
@@ -47,7 +108,7 @@ button {
     background-color: black;
     color: white;
     box-shadow: 10px 10px 10px rgba(55, 56, 56, 0.699);
-    
+
 }
 
 .UserInput {
@@ -62,30 +123,15 @@ button {
     background-color: black;
     padding: 7px;
 
-    
+
     margin-bottom: 7px;
     border-bottom: 2px solid yellow;
 }
 
-.UserInput button {
-
-    margin-right: 5px;
-    margin-top: 1%;
-    margin-bottom: 1%;
-
-    font-size: 15px;
-    font-weight: 800;
-    color: rgb(251, 255, 0);
-    background-color: rgba(72, 214, 224, 0.74);
-
-    border-radius: 7px;
-    box-shadow: 1px 1px 1px rgba(72, 214, 224, 0.699);
-}
-
 .UserInput input {
 
-    width: 40%;
-    min-width: 200px;
+    width: 80%;
+    /* min-width: 170px; */
     padding: 4px;
     border-radius: 7px;
     margin-right: 5px;
@@ -95,18 +141,128 @@ button {
     font-weight: 800;
 }
 
+.UserInput button {
+    padding: 0.6em 2em;
+    margin: 7px 5px;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.UserInput button:before {
+    content: "";
+    background: linear-gradient(45deg,
+            #ff0000,
+            #ff7300,
+            #fffb00,
+            #48ff00,
+            #00ffd5,
+            #002bff,
+            #7a00ff,
+            #ff00c8,
+            #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing-button-85 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.UserInput button:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
 #main {
     text-align: center;
+    max-height: 75vh;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+#main button:nth-child(odd) {
+
+    border-bottom: 1px solid rgba(172, 255, 47, 0.349);
+    border-right: 1px solid rgba(172, 255, 47, 0.329);
+    border-left: 1px solid rgba(172, 255, 47, 0.315);
+    border-top: 1px solid rgba(172, 255, 47, 0.322);
 
 }
+
+#main button:nth-child(even) {
+
+    border-bottom: 1px solid rgba(0, 225, 255, 0.288);
+    border-right: 1px solid rgba(0, 225, 255, 0.288);
+    border-left: 1px solid rgba(0, 225, 255, 0.288);
+    border-top: 1px solid rgba(0, 225, 255, 0.288)
+}
+
 
 #edit {
     display: none;
 }
 
 .locastroagevalue {
+
     width: 65%;
-    margin-left: 10px;
-    background-color: rgb(57, 59, 59);
+    margin-left: 8px;
+    padding-left: 10px;
+    background: #111;
     word-wrap: break-word;
+    border: 1px solid rgba(0, 225, 255, 0.103);
+    font-size: 20px;
+    text-align: justify;
+    color: rgb(221, 224, 224);
+    -webkit-text-stroke: #48ff00;
+}
+
+/*  responsive  */
+
+
+@media screen and (width:532px) {
+    .UserInput input {
+        width: 90%;
+    }
+
+    #main {
+        text-align: center;
+        height: 80vh;
+        overflow-y: scroll;
+    }
 }
