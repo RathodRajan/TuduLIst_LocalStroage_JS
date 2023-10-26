@@ -5,10 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--  css file -->
     <link rel="stylesheet" href="style.css">
+
+    <!--  pdf creat  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
         integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--  js file run -->
     <script src="script.js" defer></script>
     <title>TuDu list Localstroag</title>
 
@@ -21,7 +25,9 @@
     <div class="continer">
         <div class="UserInput">
             <input type="text" name="" id="InputValue">
-
+            <div>
+                <button id="mick" style="position: absolute; right: 11%; top: 6px; padding: 0.2rem 0.2rem; border: none;">🎤</button>
+            </div>
             <div style="margin-top: 1%; display: flex; flex-wrap: wrap; justify-content: center;">
                 <button id="submit" onclick="submit()"> <span>➕ </span> Add</button>
                 <button id="edit">✏️ Edit</button>

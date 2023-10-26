@@ -104,6 +104,7 @@ button {
 
 
 .continer {
+    position: relative;
     width: 90%;
     max-width: 520px;
     background-color: black;
@@ -132,6 +133,7 @@ button {
 
 .UserInput input {
 
+    
     width: 80%;
     /* min-width: 170px; */
     padding: 4px;
@@ -145,7 +147,7 @@ button {
 
 .UserInput button {
     padding: 0.6em 2em;
-    margin: 7px 5px;
+    margin: 10px 7px;
     border: none;
     outline: none;
     color: rgb(255, 255, 255);
