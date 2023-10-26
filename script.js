@@ -183,4 +183,16 @@ function Searching() {
 
 
 
+// ************ search  **************
+
+
+document.getElementById('main_LI_PDF').onclick = function(){
+    //  je teg pdf ma convert karvano hoy te
+    var main = document.getElementById('main');
+    // convert pdf formet selected tag
+    html2pdf().from(main).save()
+}
+
+
+
 
