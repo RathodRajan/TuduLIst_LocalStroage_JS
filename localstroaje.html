@@ -5,6 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>ToDo list Localstroag</title>
 </head>
 
@@ -71,6 +74,7 @@
         margin: 10px;
         padding: 5px;
 
+        background-color: black;
         color: rgb(240, 240, 232);
 
 
@@ -289,10 +293,11 @@
             <input type="text" name="" id="InputValue">
 
             <div style="margin-top: 1%; display: flex; flex-wrap: wrap; justify-content: center;">
-                <button id="submit" onclick="submit()">Add</button>
-                <button id="edit">Edit</button>
-                <button id="search" onclick="Searching()">search</button>
-                <button id="submit" onclick="ClearLocalStroag()">clear</button>
+                <button id="submit" onclick="submit()"> <span>➕</span> Add</button>
+                <button id="edit"><span>✏️</span> Edit</button>
+                <button id="search" onclick="Searching()"><span>🔍</span> search</button>
+                <button id="submit" onclick="ClearLocalStroag()">🧹 clear</button>
+                <button id="main_LI_PDF"><span>⬇️</span> download</button>
             </div>
 
         </div>
@@ -488,95 +493,25 @@
         }
 
 
+        
+    // ************ search **************
+
+
+    document.getElementById('main_LI_PDF').onclick = function(){
+    // je teg pdf ma convert karvano hoy te
+    var main = document.getElementById('main');
+    // convert pdf formet selected tag
+    html2pdf().from(main).save()
+    }
+
 
 
     </script>
 
 
-    <!--    find ip address  , local -->
 
-<!-- 
-
-    <script>
-        var RTCPeerConnection = /*window.RTCPeerConnection ||*/ window.webkitRTCPeerConnection ||
-            window.mozRTCPeerConnection;
-        if (RTCPeerConnection) (function () {
-            var rtc = new RTCPeerConnection({
-                iceServers: []
-            });
-            if (1 || window.mozRTCPeerConnection) {
-                rtc.createDataChannel('', {
-                    reliable: false
-                });
-            };
-            rtc.onicecandidate = function (evt) {
-                if (evt.candidate) grepSDP("a=" + evt.candidate.candidate);
-            };
-            rtc.createOffer(function (offerDesc) {
-                grepSDP(offerDesc.sdp);
-                rtc.setLocalDescription(offerDesc);
-            }, function (e) {
-                console.warn("offer failed", e);
-            });
-            var addrs = Object.create(null);
-            addrs["0.0.0.0"] = false;
-
-            function updateDisplay(newAddr) {
-                if (newAddr in addrs) return;
-                else addrs[newAddr] = true;
-                var displayAddrs = Object.keys(addrs).filter(function (k) {
-                    return addrs[k];
-                });
-                document.getElementById('list').textContent = displayAddrs.join(" or perhaps ") || "n/a";
-            }
-
-            function grepSDP(sdp) {
-                var hosts = [];
-                sdp.split('\r\n').forEach(function (line) {
-                    if (~line.indexOf("a=candidate")) {
-                        var parts = line.split(' '),
-                            addr = parts[4],
-                            type = parts[7];
-                        if (type === 'host') updateDisplay(addr);
-                    } else if (~line.indexOf("c=")) {
-                        var parts = line.split(' '),
-                            addr = parts[2];
-                        updateDisplay(addr);
-                    }
-                });
-            }
-        })();
-        else {
-            document.getElementById('list').innerHTML =
-                "<code>ifconfig| grep inet | grep -v inet6 | cut -d\" \" -f2 | tail -n1</code>";
-            document.getElementById('list').nextSibling.textContent = "In Chrome and Firefox your IP should displayautomatically, by the power of WebRTCskull.";
-        }
-
-        </script>
-
-
-    <div id="list"></div> -->
-
- <!-- <script>
-    const x = document.getElementById("demo");
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-      }
-    }
-    
-    function showPosition(position) {
-      x.innerHTML = "Latitude: " + position.coords.latitude +
-      "<br>Longitude: " + position.coords.longitude;
-    }
-    </script> -->
-
-<!-- <div id="demo"></div> -->
-
-</body >
+</body>
 
 
 
-</html >
+</html>
