@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="script.js" defer></script>
     <title>TuDu list Localstroag</title>
 
@@ -20,22 +23,26 @@
             <input type="text" name="" id="InputValue">
 
             <div style="margin-top: 1%; display: flex; flex-wrap: wrap; justify-content: center;">
-                <button id="submit" onclick="submit()">Add</button>
-                <button id="edit">Edit</button>
-                <button id="search" onclick="Searching()">search</button>
-                <button id="submit" onclick="ClearLocalStroag()">clear</button>
+                <button id="submit" onclick="submit()"> <span>➕ </span> Add</button>
+                <button id="edit">✏️ Edit</button>
+                <button id="search" onclick="Searching()">🔍 search</button>
+                <button id="submit" onclick="ClearLocalStroag()">🧹 clear</button>
+                <button id="main_LI_PDF">⬇️ download</button>
             </div>
 
         </div>
         <div id="main">
 
-            <!-- enter js value -->
+            <!-- enter js file value -->
 
         </div>
 
+
     </div>
-</body >
+
+
+</body>
 
 
 
-</html >
+</html>
