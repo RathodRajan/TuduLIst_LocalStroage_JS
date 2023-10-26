@@ -46,21 +46,21 @@
         background: #7cb7da;
         border-radius: 10px;
 
-        
+
         background: linear-gradient(45deg,
-                #ff0000a8,
-                #ff73007a,
-                #fffb00a1,
-                #48ff007e,
-                #00ffd591,
-                #002aff81,
-                #7b00ff86,
-                #ff00c886,
-                #ff000070);
-       
+                #ff0000,
+                #ff7300,
+                #fffb00,
+                #48ff00,
+                #00ffd5,
+                #002bff,
+                #7a00ff,
+                #ff00c8,
+                #ff0000);
+
         animation: glowing-button-85 20s linear infinite;
         transition: opacity 0.3s ease-in-out;
-        
+
 
     }
 
@@ -222,7 +222,7 @@
 
     #main {
         text-align: center;
-        height: 75vh;
+        max-height: 75vh;
         overflow: auto;
         overflow-x: hidden;
     }
@@ -250,8 +250,10 @@
     }
 
     .locastroagevalue {
+
         width: 65%;
         margin-left: 8px;
+        padding-left: 10px;
         background: #111;
         word-wrap: break-word;
         border: 1px solid rgba(0, 225, 255, 0.103);
@@ -428,6 +430,10 @@
                 inputValue.value == "";
 
             }
+
+            //  find ip address 
+
+
         }
 
         //  ***********  Print value Localstroage   *************************************
@@ -487,8 +493,90 @@
     </script>
 
 
-</body>
+    <!--    find ip address  , local -->
 
 
 
-</html>
+    <script>
+        var RTCPeerConnection = /*window.RTCPeerConnection ||*/ window.webkitRTCPeerConnection ||
+            window.mozRTCPeerConnection;
+        if (RTCPeerConnection) (function () {
+            var rtc = new RTCPeerConnection({
+                iceServers: []
+            });
+            if (1 || window.mozRTCPeerConnection) {
+                rtc.createDataChannel('', {
+                    reliable: false
+                });
+            };
+            rtc.onicecandidate = function (evt) {
+                if (evt.candidate) grepSDP("a=" + evt.candidate.candidate);
+            };
+            rtc.createOffer(function (offerDesc) {
+                grepSDP(offerDesc.sdp);
+                rtc.setLocalDescription(offerDesc);
+            }, function (e) {
+                console.warn("offer failed", e);
+            });
+            var addrs = Object.create(null);
+            addrs["0.0.0.0"] = false;
+
+            function updateDisplay(newAddr) {
+                if (newAddr in addrs) return;
+                else addrs[newAddr] = true;
+                var displayAddrs = Object.keys(addrs).filter(function (k) {
+                    return addrs[k];
+                });
+                document.getElementById('list').textContent = displayAddrs.join(" or perhaps ") || "n/a";
+            }
+
+            function grepSDP(sdp) {
+                var hosts = [];
+                sdp.split('\r\n').forEach(function (line) {
+                    if (~line.indexOf("a=candidate")) {
+                        var parts = line.split(' '),
+                            addr = parts[4],
+                            type = parts[7];
+                        if (type === 'host') updateDisplay(addr);
+                    } else if (~line.indexOf("c=")) {
+                        var parts = line.split(' '),
+                            addr = parts[2];
+                        updateDisplay(addr);
+                    }
+                });
+            }
+        })();
+        else {
+            document.getElementById('list').innerHTML =
+                "<code>ifconfig| grep inet | grep -v inet6 | cut -d\" \" -f2 | tail -n1</code>";
+            document.getElementById('list').nextSibling.textContent = "In Chrome and Firefox your IP should displayautomatically, by the power of WebRTCskull.";
+        }
+
+        </script>
+
+
+    <div id="list"></div>
+
+ <script>
+    const x = document.getElementById("demo");
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+    
+    function showPosition(position) {
+      x.innerHTML = "Latitude: " + position.coords.latitude +
+      "<br>Longitude: " + position.coords.longitude;
+    }
+    </script>
+
+<!-- <div id="demo"></div> -->
+
+</body >
+
+
+
+</html >
