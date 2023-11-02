@@ -423,6 +423,7 @@
             if (inputValue.value == "") {
                 alert("Enter the value first");
             }
+            
             else if (localStorage.getItem("UserValue") != null && inputValue.value != null && inputValue.value != undefined) {
                 localStorageValue = inputValue.value + "|*" + localStorage.getItem("UserValue");
                 localStorage.setItem("UserValue", localStorageValue);

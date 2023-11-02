@@ -183,7 +183,7 @@ document.getElementById("main_LI_PDF").onclick = function () {
 
 var speech = true;
 document.getElementById("mick").addEventListener("click", function () {
-  window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  window.SpeechRecognition =  window.webkitSpeechRecognition || window.SpeechRecognition;
   const recognition = new SpeechRecognition();
   recognition.interimResults = true;
   recognition.addEventListener("result", (e) => {
