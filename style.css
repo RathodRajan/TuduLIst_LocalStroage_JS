@@ -70,6 +70,11 @@ li {
 
 }
 
+li button{
+    padding: 1px 1px;
+    margin: 2px
+}
+
 #main li:nth-child(even) {
 
     border-bottom: 1px solid rgba(172, 255, 47, 0.596);
@@ -107,7 +112,7 @@ button {
 .continer {
     position: relative;
     width: 90%;
-    max-width: 520px;
+    max-width: 720px;
     background-color: black;
     color: white;
     border: 1px solid rgb(78, 78, 78);
@@ -135,17 +140,45 @@ button {
 .UserInput input {
 
     
-    width: 80%;
-    /* min-width: 170px; */
+    width: 70%;
+    min-width: 100px;
     padding: 4px;
     border-radius: 7px;
-    margin-right: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+
+    margin: 5px 2px;
+    
     font-size: 15px;
     font-weight: 800;
+
+
 }
 
+.UserInput .mick_Button_OPtione{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    height: 30px;
+
+    /* background-color: rgba(13, 240, 145, 0.596); */
+    margin: 7px 2px ;
+
+}
+.UserInput .mick_Button_OPtione div{
+    height: 100%;
+    margin: 0px 3px;
+
+}
+
+.UserInput .mick_Button_OPtione div:nth-child(2) select{
+    margin-top: 3%;
+    padding: 2px;
+}
+.UserInput #mick{
+    /* all: inherit; */
+    padding: 0.4em 0.4em;
+    margin: 0px 2px;
+}
 .UserInput button {
     padding: 0.6em 2em;
     margin: 10px 7px;
@@ -175,14 +208,14 @@ button {
             #ff00c8,
             #ff0000);
     position: absolute;
-    top: -2px;
-    left: -2px;
+    top: -1px;
+    left: -1px;
     background-size: 400%;
     z-index: -1;
-    filter: blur(5px);
-    -webkit-filter: blur(5px);
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
     animation: glowing-button-85 20s linear infinite;
     transition: opacity 0.3s ease-in-out;
     border-radius: 10px;
@@ -216,15 +249,18 @@ button {
 
 #main {
     text-align: center;
-    max-height: 75vh;
+    max-height: 70vh;
     overflow: auto;
     overflow-x: hidden;
 }
 
+/* ii na button che */
 #main div:nth-child(2) {
     display: flex;
-    justify-content: space-between;
-    width: 80px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    width: 40px;
 
 }
 
@@ -252,7 +288,7 @@ button {
 
 .locastroagevalue {
 
-    width: 65%;
+    width: 70%;
     margin-left: 8px;
     padding-left: 10px;
     background: #111;

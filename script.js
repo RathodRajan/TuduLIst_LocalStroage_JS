@@ -13,7 +13,6 @@ inputValue.addEventListener("keypress", function (event) {
   }
 });
 
-
 //  ***********  clear localStroage Key   **********
 function ClearLocalStroag() {
   localStorage.clear();
@@ -36,6 +35,7 @@ function DeleteElement(i) {
     console.log("element = " + element + "|");
     console.log("local element = " + localStorageValue[i]);
     if (localStorageValue[i] == element) {
+      console.log("remove element index  i = " + i);
       console.log("remove element = " + localStorageValue[i]);
       localStorageValue.splice(i, 1);
     }
@@ -45,6 +45,7 @@ function DeleteElement(i) {
   console.log(
     "localStorageReplace = " + localStorageReplace.replace(/,/g, "|*")
   );
+  // string ma jya " , " darek jagya ye " |* " riplace kari do
   UpdatedLocalStroageval = localStorageReplace.replace(/,/g, "|*");
   localStorage.setItem("UserValue", UpdatedLocalStroageval);
 
@@ -87,6 +88,7 @@ EditBtn.addEventListener("click", () => {
 
   // local stroag ni value string ma kanvert karva mate
   localStorageReplace = localStorageValue + "";
+  // string ma jya " , " darek jagya ye " |* " riplace kari do
   console.log(
     "localStorageReplace = " + localStorageReplace.replace(/,/g, "|*")
   );
@@ -118,13 +120,13 @@ function submit() {
     location.reload();
     inputValue.value == "";
   }
-
-  //  find ip address
 }
 
 //  ***********  Print value Localstroage   *************************************
 var li;
 function PrintLocalStroagValue() {
+  console.log(localStorage.getItem("UserValue").length);
+
   localStorageValue = localStorage.getItem("UserValue").split("|*");
   console.log(localStorageValue);
 
@@ -135,9 +137,10 @@ function PrintLocalStroagValue() {
                          <div class='locastroagevalue'>
                              ${localStorageValue[i]} 
                          </div>
-                         <div>
+                         <div class='locastroagevalueButton' >
                             <button class="${i}" onclick="EditElement(${i})" > ✏️ </button>  
-                            <button class="${i}" onclick="DeleteElement(${i})" > ❎  </button>
+                            <button class="${i}" onclick="DeleteElement(${i})" > ❎  </button> 
+                            <button class="${i}" onclick="SpeechTxt(${i})" > 🔊  </button>
                          </div> `;
     li.id = i;
     main.appendChild(li);
@@ -171,35 +174,73 @@ function Searching() {
 // ************ PDF part  **************
 
 document.getElementById("main_LI_PDF").onclick = function () {
-  //  je teg pdf ma convert karvano hoy te
-  var main = document.getElementById("main");
-  // convert pdf formet selected tag
-  html2pdf().from(main).save();
+  if (navigator.onLine) {
+    // addEventListener("online",()=>{})
+    //  je teg pdf ma convert karvano hoy te
+    console.log("online");
+    var main = document.getElementById("main");
+    // convert pdf formet selected tag
+    html2pdf().from(main).save();
+  } else {
+    console.log("offline");
+    window.alert("on network connection");
+  }
 };
-
-
 
 // ************ Voice to text Part  **************
 
 var speech = true;
-document.getElementById("mick").addEventListener("click", function () {
-  window.SpeechRecognition =  window.webkitSpeechRecognition || window.SpeechRecognition;
-  const recognition = new SpeechRecognition();
-  recognition.interimResults = true;
-  recognition.addEventListener("result", (e) => {
-    const transcript = Array.from(e.results)
-      .map((result) => result[0])
-      .map((result) => result.transcript)
-      .join("");
+let sr = window.window.webkitSpeechRecognition || window.SpeechRecognition
+let spRec = new sr();
 
-    console.log(transcript);
-    inputValue.value = transcript;
-  });
 
-  recognition.start();
 
-//   if (speech == true) {
-//     recognition.start();
-//     recognition.addEventListener("end", recognition.start);
-//   }
+spRec.continuous = true;
+spRec.interimResults = true;
+
+
+document.getElementById("mick").addEventListener("click", function (e) {
+
+  if (navigator.onLine) {
+
+    // kai language ma lkhavnu che te btave che
+    spRec.lang = document.getElementById('languagesOption').value;
+    console.log( document.getElementById('languagesOption').value);
+
+
+    e.preventDefault();
+    spRec.start();
+
+    // text print thay che  result speech nu
+    spRec.onresult = (res) => {
+      let text = Array.from(res.results).map(r => r[0]).map(txt => txt.transcript).join("");
+      console.log(text);
+    }
+
+    setTimeout(() => {
+      console.log("set time call");
+      spRec.stop();
+    }, 20000);
+
+  } else {
+    console.log("offline");
+    window.alert("on network connection");
+  }
 });
+
+
+// ************  text Part voice  **************
+
+
+function SpeechTxt(id){
+
+  // let select =  document.getElementById(`${id}`).getElementsByTagName('div')[0].textContent
+  // console.log(select);
+
+  let TextTOVoice = new SpeechSynthesisUtterance();
+  TextTOVoice.text =  document.getElementById(`${id}`).getElementsByTagName('div')[0].textContent;
+  window.speechSynthesis.speak(TextTOVoice);
+}
+
+
+
